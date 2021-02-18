@@ -147,7 +147,7 @@ class MapApp {
     const marker = this.#markers.find(
       (mark) => mark.id === markerElement.dataset.id
     );
-    this.#map.setView(marker.coords, 15, {
+    this.#map.setView(marker.coords, 12, {
       animate: true,
       pan: {
         duration: 1,
