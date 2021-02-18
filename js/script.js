@@ -10,9 +10,9 @@ class Marker {
     this.coords = coords;
     this.namePoint = namePoint;
     this.comment = comment;
-    this._setDescription();
+    this.setDescription();
   }
-  _setDescription() {
+  setDescription() {
     const months = [
       "January",
       "February",
@@ -40,20 +40,20 @@ class MapApp {
   #markers = [];
 
   constructor() {
-    this._getPosition();
-    form.addEventListener("submit", this._newMarker.bind(this));
-    containerMarkers.addEventListener("click", this._moveToPopup.bind(this));
+    this.getPosition();
+    form.addEventListener("submit", this.newMarker.bind(this));
+    containerMarkers.addEventListener("click", this.moveToPopup.bind(this));
   }
 
-  _getPosition() {
+  getPosition() {
     navigator.geolocation.getCurrentPosition(
-      this._loadMap.bind(this),
+      this.loadMap.bind(this),
       function () {
         alert("Your position is not found");
       }
     );
   }
-  _loadMap(position) {
+  loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
 
@@ -68,15 +68,15 @@ class MapApp {
 
     // Event: click on map
 
-    this.#map.on("click", this._showForm.bind(this));
+    this.#map.on("click", this.showForm.bind(this));
     //this._renderMarker(mark);
   }
-  _showForm(cursorEvent) {
+  showForm(cursorEvent) {
     this.#cursorClick = cursorEvent;
     form.classList.remove("hidden");
     inputNamePoint.focus();
   }
-  _hideForm() {
+  hideForm() {
     // Empty inputs
     inputNamePoint.value = inputComment.value = "";
 
@@ -84,7 +84,7 @@ class MapApp {
     form.classList.add("hidden");
     setTimeout(() => (form.style.display = "grid"), 1000);
   }
-  _newMarker(e) {
+  newMarker(e) {
     e.preventDefault();
 
     //Get data
@@ -98,13 +98,13 @@ class MapApp {
     //
     this.#markers.push(marker);
 
-    this._renderMarker(marker);
+    this.renderMarker(marker);
 
-    this._render(marker);
+    this.render(marker);
 
-    this._hideForm();
+    this.hideForm();
   }
-  _renderMarker(marker) {
+  renderMarker(marker) {
     L.marker(marker.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -123,7 +123,7 @@ class MapApp {
 
   //Display marker
 
-  _render(marker) {
+  render(marker) {
     const html = `
         <li class="marker marker--running" data-id="${marker.id}">
           <h2 class="marker__title">${marker.description}</h2>
@@ -140,7 +140,7 @@ class MapApp {
     form.insertAdjacentHTML("afterend", html);
   }
 
-  _moveToPopup(e) {
+  moveToPopup(e) {
     const markerElement = e.target.closest(".marker");
     if (!markerElement) return;
 
