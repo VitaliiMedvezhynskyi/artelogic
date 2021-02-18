@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Shortcut icon  -->
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <!-- Include main css-file style.css -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Include fonts -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Include MapBox API connection -->
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css"
+    />
+    <script
+      defer
+      src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"
+    ></script>
+    <script>
+      // Provide your access token
+      L.map.accessToken =
+        "pk.eyJ1Ijoidml0YWxpaW1lZHZlemh5bnNreWkiLCJhIjoiY2tsMHdpN3BtMHJyNDJ2bWxuNXQ0ejZiaiJ9.ym_s42Y9Idi4D2M7ElaYLA";
+      // Create a map in the div #map
+      L.map.map("map", "map.streets");
+    </script>
+
+    <script defer src="script.js"></script>
+
+    <title>MapBox Map Points</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <img src="logo.png" class="logo" />
+
+      <ul class="markers">
+        <form class="form hidden">
+          <div class="form__row">
+            <label class="form__label">Name of Point</label>
+            <input
+              class="form__input form__input--namePoint"
+              placeholder="Name"
+            />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Comment</label>
+            <input
+              class="form__input form__input--comment"
+              placeholder="Comment"
+            />
+          </div>
+          <button class="form__btn">Submit</button>
+        </form>
+      </ul>
+    </div>
+
+    <div id="map"></div>
+  </body>
+</html>
