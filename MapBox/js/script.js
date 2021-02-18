@@ -115,8 +115,8 @@ class MapApp {
         })
       )
       .setPopupContent(
-        `${marker.namePoint}
-        ${marker.description}\n`
+        `${marker.namePoint} ,
+        ${marker.description}`
       )
       .openPopup();
   }
